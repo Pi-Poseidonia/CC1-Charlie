@@ -1,0 +1,9 @@
+# Windows System-Files
+Thumbs.db
+desktop.ini
+
+# Microsoft Office temporary Files
+~$*
+
+# hidden folder of Microsoft-Tools
+.vs/
