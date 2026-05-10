@@ -7,6 +7,10 @@ class ChoiceInline(admin.TabularInline):
    extra = 3
 
 class QuestionAdmin(admin.ModelAdmin):
-   inlines = [ChoiceInline]
+    fieldsets = [
+        (None,               {"fields": ["question_text"]}),
+        ("Date Information", {"fields": ["pub_date"]}),
+    ]
+    inlines = [ChoiceInline]
 
 admin.site.register(Question, QuestionAdmin)
