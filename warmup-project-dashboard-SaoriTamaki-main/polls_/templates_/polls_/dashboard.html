@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recently Published Dashboard</title>
+</head>
+<body style="font-family: sans-serif; padding: 20px; line-height: 1.6;">
+
+    <h1>Recently Published Dashboard</h1>
+
+    {% if latest_question_list %}
+        <ul style="margin-left: 0; padding-left: 0;">
+        {% for question in latest_question_list %}
+            <li style="margin-bottom: 15px; list-style-type: none;">
+                <div style="display: flex; align-items: center; margin-left: 20px;">
+                    <span style="font-size: 1.2em; margin-right: 10px;">•</span>
+
+                    <a href="{% url 'polls:detail' question.id %}" style="text-decoration: none; color: #5c2d91; font-weight: bold; font-size: 1.1em; border-bottom: 1px solid #c4b5d6;">
+                        {{ question.question_text }}
+                    </a>
+
+                    {% if question.was_published_recently %}
+                        <span style="color: #4caf50; font-weight: bold; margin-left: 10px;">[NEW]</span>
+                    {% endif %}
+                </div>
+
+                <p style="margin: 5px 0 0 50px; color: #333;">
+                    Published on: {{ question.pub_date|date:"F j, Y, P" }}
+                </div>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No questions are available at the moment.</p>
+    {% endif %}
+
+    <hr style="border: 0; border-top: 1px solid #ccc; margin: 20px 0;">
+    <a href="{% url 'polls:index' %}" style="text-decoration: none; color: #5c2d91;">Back to Full List</a>
+
+</body>
+</html>

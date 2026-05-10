@@ -1,0 +1,17 @@
+
+<div style="background-color: #f0f6ff; padding: 15px; border: 1px solid #d0e3ff; border-radius: 8px; margin-bottom: 20px;">
+    <a href="{% url 'polls:dashboard' %}" style="font-weight: bold; text-decoration: none; color: #0056b3;">
+        🚀 Go to Recently Published Dashboard
+    </a>
+</div>
+
+
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
