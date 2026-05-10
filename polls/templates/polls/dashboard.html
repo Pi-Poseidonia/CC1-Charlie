@@ -1,0 +1,26 @@
+<h1>Polls Dashboard</h1>
+<p>Latest questions:</p>
+
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li>
+
+            <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
+
+
+            {% if question.was_published_recently %}
+                <span style="color: green; font-weight: bold;">[NEW]</span>
+            {% endif %}
+
+            <br>
+            <small>published at: {{ question.pub_date|date:"d.m.Y H:i" }}</small>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>no votes available.</p>
+{% endif %}
+
+<hr>
+<a href="{% url 'polls:index' %}">back to start</a>

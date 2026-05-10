@@ -1,0 +1,22 @@
+<!-- search bar -->
+<form action="{% url 'polls:index' %}" method="get" style="margin-bottom: 20px;">
+    <input type="text" name="q" placeholder="Search for a question..." value="{{ request.GET.q }}">
+    <button type="submit">Search</button>
+    <a href="{% url 'polls:index' %}">Clear</a>
+</form>
+
+<hr>
+
+<!-- list -->
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+<!-- Dashboard-Link -->
+<a href="{% url 'polls:dashboard' %}"> 🚀 Go to Recently Published Dashboard</a>
